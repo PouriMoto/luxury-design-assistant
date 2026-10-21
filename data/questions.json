@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "quiz_id": "luxury_design_quiz_v0",
+  "start_question_id": "project_type",
+  "questions": [
+    {
+      "id": "project_type",
+      "type": "single_choice",
+      "title": "برای چه نوع پروژه‌ای قصد انتخاب کابینت یا دکور چوبی داری؟",
+      "description": "این انتخاب کمک می‌کند راهنمای مرتبط‌تری برایت آماده کنیم.",
+      "required": true,
+      "options": [
+        { "id": "home",       "label": "خانه شخصی",        "next": "project_stage" },
+        { "id": "villa",      "label": "ویلا",             "next": "project_stage" },
+        { "id": "multi_unit", "label": "ساختمان چندواحدی", "next": "project_stage" },
+        { "id": "commercial", "label": "فضای تجاری",       "next": "project_stage" },
+        { "id": "contractor", "label": "پروژه پیمانکاری",  "next": "contractor_scope" }
+      ]
+    },
+    {
+      "id": "contractor_scope",
+      "type": "single_choice",
+      "title": "پروژه‌ای که برای مشتری مدیریت می‌کنی بیشتر در چه حوزه‌ای است؟",
+      "description": "این کمک می‌کند نمونه‌های مرتبط‌تری پیشنهاد بدهیم.",
+      "required": true,
+      "options": [
+        { "id": "residential", "label": "مسکونی",            "next": "design_priority" },
+        { "id": "commercial",  "label": "تجاری",             "next": "design_priority" },
+        { "id": "mixed",       "label": "ترکیبی مسکونی-تجاری", "next": "design_priority" }
+      ]
+    },
+    {
+      "id": "project_stage",
+      "type": "single_choice",
+      "title": "پروژه‌ات الان در چه مرحله‌ای قرار داره؟",
+      "description": "با دونستن این، می‌توانیم محتوای مناسب‌تری پیشنهاد کنیم.",
+      "required": true,
+      "options": [
+        { "id": "exploring",         "label": "در حال بررسی ایده‌ها",        "next": "preferred_style" },
+        { "id": "designing",         "label": "در مرحله طراحی یا ساخت",       "next": "preferred_style" },
+        { "id": "property_received", "label": "ملک را تحویل گرفته‌ام",        "next": "preferred_style" },
+        { "id": "ready_for_order",   "label": "آماده اندازه‌گیری و سفارش",   "next": "preferred_style" },
+        { "id": "for_client",        "label": "در حال برنامه‌ریزی برای مشتری", "next": "preferred_style" }
+      ]
+    },
+    {
+      "id": "preferred_style",
+      "type": "single_choice",
+      "variant": "image_cards",
+      "title": "کدام سبک را بیشتر می‌پسندی؟",
+      "description": "روی تصویری که به سلیقه‌ات نزدیک‌تر است کلیک کن.",
+      "required": true,
+      "options": [
+        { "id": "modern_minimal",       "label": "مدرن مینیمال",   "image": "assets/images/styles/modern_minimal.jpg",       "next": "design_priority" },
+        { "id": "warm_natural",         "label": "گرم و طبیعی",    "image": "assets/images/styles/warm_natural.jpg",         "next": "design_priority" },
+        { "id": "contemporary_luxury",  "label": "معاصر لوکس",     "image": "assets/images/styles/contemporary_luxury.jpg",  "next": "design_priority" },
+        { "id": "classic_contemporary", "label": "کلاسیک معاصر",   "image": "assets/images/styles/classic_contemporary.jpg", "next": "design_priority" }
+      ]
+    },
+    {
+      "id": "design_priority",
+      "type": "single_choice",
+      "title": "اگر یک ویژگی در انتخاب کابینت برایت مهم‌تر باشد، کدام است؟",
+      "description": "اولویت اصلی‌ات به ما کمک می‌کند نتیجه دقیق‌تری بدهیم.",
+      "required": true,
+      "options": [
+        { "id": "visual_beauty",   "label": "زیبایی و هماهنگی بصری",        "next": "project_timeline" },
+        { "id": "material_quality","label": "کیفیت متریال و جزئیات",         "next": "project_timeline" },
+        { "id": "storage_function","label": "فضای ذخیره‌سازی و کاربردپذیری", "next": "project_timeline" },
+        { "id": "unique_design",   "label": "طراحی خاص و متفاوت",            "next": "project_timeline" },
+        { "id": "architectural_fit","label": "هماهنگی با معماری کل فضا",     "next": "project_timeline" }
+      ]
+    },
+    {
+      "id": "project_timeline",
+      "type": "single_choice",
+      "title": "برای شروع یا اجرای پروژه چه زمانی در نظر داری؟",
+      "description": "این موضوع به ما می‌گوید چه نوع محتوایی برایت مناسب‌تر است.",
+      "required": true,
+      "options": [
+        { "id": "unknown",        "label": "هنوز مشخص نیست",       "next": "measurement_status" },
+        { "id": "over_6_months",  "label": "بیش از شش ماه دیگر",   "next": "measurement_status" },
+        { "id": "three_to_six",   "label": "سه تا شش ماه آینده",    "next": "measurement_status" },
+        { "id": "one_to_three",   "label": "یک تا سه ماه آینده",    "next": "measurement_status" },
+        { "id": "ready_now",      "label": "آماده شروع هستم",       "next": "measurement_status" }
+      ]
+    },
+    {
+      "id": "measurement_status",
+      "type": "single_choice",
+      "title": "وضعیت نقشه یا ابعاد فضا چطوره؟",
+      "description": "این آخرین سؤال است. بلافاصله بعدش نتیجه‌ات را می‌بینی.",
+      "required": true,
+      "options": [
+        { "id": "unknown",         "label": "هنوز مشخص نیست",              "next": "result" },
+        { "id": "concept_plan",    "label": "نقشه اولیه دارم",             "next": "result" },
+        { "id": "dimensions_ready","label": "ابعاد فضا مشخص است",           "next": "result" },
+        { "id": "full_docs",       "label": "نقشه اجرایی و اطلاعات کامل دارم","next": "result" },
+        { "id": "need_measure",    "label": "به اندازه‌گیری اولیه نیاز دارم", "next": "result" }
+      ]
+    }
+  ]
+}

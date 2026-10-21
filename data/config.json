@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "env": "dev",
+  "quiz_id": "luxury_design_quiz",
+  "app_name": "دستیار طراحی لوکس",
+  "start_question_id": "project_type",
+
+  "api": {
+    "endpoint": "https://script.google.com/macros/s/AKfycbw-gJsgr49SYqvzHLwH2q1oCATzfun4H2rMnvZSOweng3ojQr_beZem__dEbZg24zkJ/exec",
+    "timeout_ms": 12000,
+    "max_retries": 2,
+    "retry_delays_ms": [2000, 5000],
+    "comment_endpoint": "پس از راه‌اندازی Apps Script در مرحله ۳، اینجا URL Web App را قرار دهید."
+  },
+
+  "analytics": {
+    "enabled": true,
+    "batch_size": 20,
+    "batch_interval_ms": 15000,
+    "max_queue_size": 300,
+    "db_name": "lda_analytics",
+    "db_version": 1,
+    "store_name": "events",
+    "comment": "رویدادها در IndexedDB صف می‌شوند؛ پس از اتصال موفق به Apps Script، به Sheets می‌روند."
+  },
+
+  "image_paths": {
+    "styles": "assets/images/styles/",
+    "results": "assets/images/results/",
+    "fallback": "assets/images/fallback.jpg"
+  },
+
+  "typing": {
+    "min_ms": 1000,
+    "max_ms": 1800,
+    "user_bubble_delay_ms": 150,
+    "bot_bubble_appear_ms": 300
+  },
+
+  "flow_steps": ["intro", "quiz", "result", "lead", "done"]
+}

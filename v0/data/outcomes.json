@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "tie_breaker": {
+    "priority_order": ["preferred_style", "design_priority"],
+    "fallback_profile": "modern_minimal"
+  },
+  "lead_priority_thresholds": { "high": 6, "medium": 3 },
+  "profiles": [
+    {
+      "id": "modern_minimal",
+      "title": "پروفایل طراحی شما: مدرن مینیمال",
+      "summary": "انتخاب‌هایت نشان می‌دهد سبک‌های ساده، خطوط تمیز و فضای منفی زیاد برایت جذاب‌تر هستند. این سبک معمولاً با متریال روشن و ترکیب‌های بدون تزئین هماهنگ است.",
+      "image": "assets/images/results/modern_minimal.jpg",
+      "catalog_id": "catalog_modern_minimal",
+      "chart_label": "مدرن مینیمال",
+      "recommendations": [
+        { "id": "rec_minimal_projects",  "title": "پروژه‌های کابینت مینیمال",       "url": "#" },
+        { "id": "rec_handleless_guide",  "title": "راهنمای کابینت‌های بدون دستگیره", "url": "#" },
+        { "id": "rec_space_checklist",   "title": "چک‌لیست فضاسازی مینیمال",         "url": "#" }
+      ],
+      "next_steps": [
+        { "id": "next_catalog", "label": "مشاهده کاتالوگ مینیمال" },
+        { "id": "next_guide",   "label": "دریافت راهنمای آماده‌سازی" },
+        { "id": "next_consult", "label": "درخواست بررسی کارشناس" }
+      ]
+    },
+    {
+      "id": "warm_natural",
+      "title": "پروفایل طراحی شما: گرم و طبیعی",
+      "summary": "انتخاب‌هایت نشان می‌دهد سبک‌هایی با بافت طبیعی، متریال گرم و رنگ‌های زمینی برایت جذاب‌تر هستند. این سبک اغلب با چوب طبیعی و ترکیب‌های نرم هماهنگ است.",
+      "image": "assets/images/results/warm_natural.jpg",
+      "catalog_id": "catalog_warm_natural",
+      "chart_label": "گرم و طبیعی",
+      "recommendations": [
+        { "id": "rec_warm_projects",  "title": "پروژه‌های کابینت چوبی گرم", "url": "#" },
+        { "id": "rec_material_guide","title": "ترکیب رنگ و متریال گرم",   "url": "#" },
+        { "id": "rec_checklist",     "title": "چک‌لیست انتخاب سازنده",     "url": "#" }
+      ],
+      "next_steps": [
+        { "id": "next_catalog", "label": "مشاهده کاتالوگ گرم" },
+        { "id": "next_guide",   "label": "دریافت راهنمای آماده‌سازی" },
+        { "id": "next_consult", "label": "درخواست بررسی کارشناس" }
+      ]
+    },
+    {
+      "id": "contemporary_luxury",
+      "title": "پروفایل طراحی شما: معاصر لوکس",
+      "summary": "انتخاب‌هایت نشان می‌دهد سبک‌های معاصر با جزئیات لوکس و متریال باکیفیت برایت جذاب‌تر هستند. این سبک معمولاً با ترکیب چوب، سنگ و فلز هماهنگ است.",
+      "image": "assets/images/results/contemporary_luxury.jpg",
+      "catalog_id": "catalog_contemporary_luxury",
+      "chart_label": "معاصر لوکس",
+      "recommendations": [
+        { "id": "rec_lux_projects",  "title": "پروژه‌های معاصر لوکس",       "url": "#" },
+        { "id": "rec_material_mix",  "title": "راهنمای ترکیب متریال لوکس",   "url": "#" },
+        { "id": "rec_lux_checklist", "title": "چک‌لیست پروژه لوکس",          "url": "#" }
+      ],
+      "next_steps": [
+        { "id": "next_catalog", "label": "مشاهده کاتالوگ لوکس" },
+        { "id": "next_guide",   "label": "دریافت راهنمای آماده‌سازی" },
+        { "id": "next_consult", "label": "درخواست بررسی کارشناس" }
+      ]
+    },
+    {
+      "id": "classic_contemporary",
+      "title": "پروفایل طراحی شما: کلاسیک معاصر",
+      "summary": "انتخاب‌هایت نشان می‌دهد سبک‌های کلاسیک با بازخوانی معاصر و جزئیات خاص برایت جذاب‌تر هستند. این سبک اغلب با ترکیب خطوط منظم و جزئیات ظریف هماهنگ است.",
+      "image": "assets/images/results/classic_contemporary.jpg",
+      "catalog_id": "catalog_classic_contemporary",
+      "chart_label": "کلاسیک معاصر",
+      "recommendations": [
+        { "id": "rec_classic_projects", "title": "پروژه‌های کلاسیک معاصر",  "url": "#" },
+        { "id": "rec_classic_details",  "title": "جزئیات طراحی کلاسیک",      "url": "#" },
+        { "id": "rec_classic_checklist","title": "چک‌لیست پروژه کلاسیک",     "url": "#" }
+      ],
+      "next_steps": [
+        { "id": "next_catalog", "label": "مشاهده کاتالوگ کلاسیک معاصر" },
+        { "id": "next_guide",   "label": "دریافت راهنمای آماده‌سازی" },
+        { "id": "next_consult", "label": "درخواست بررسی کارشناس" }
+      ]
+    }
+  ]
+}

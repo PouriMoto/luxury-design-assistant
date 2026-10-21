@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "path_rules": [
+    {
+      "id": "contractor_to_scope",
+      "when": {
+        "all": [
+          { "field": "project_type", "operator": "equals", "value": "contractor" }
+        ]
+      },
+      "effects": [
+        { "type": "override_next", "target": "contractor_scope" }
+      ]
+    }
+  ],
+  "score_rules": [
+    {
+      "id": "style_from_preferred_direct",
+      "when": { "all": [{ "field": "preferred_style", "operator": "equals", "value": "modern_minimal" }] },
+      "effects": [{ "type": "style_score", "target": "modern_minimal", "value": 5 }]
+    },
+    {
+      "id": "style_from_preferred_warm",
+      "when": { "all": [{ "field": "preferred_style", "operator": "equals", "value": "warm_natural" }] },
+      "effects": [{ "type": "style_score", "target": "warm_natural", "value": 5 }]
+    },
+    {
+      "id": "style_from_preferred_lux",
+      "when": { "all": [{ "field": "preferred_style", "operator": "equals", "value": "contemporary_luxury" }] },
+      "effects": [{ "type": "style_score", "target": "contemporary_luxury", "value": 5 }]
+    },
+    {
+      "id": "style_from_preferred_classic",
+      "when": { "all": [{ "field": "preferred_style", "operator": "equals", "value": "classic_contemporary" }] },
+      "effects": [{ "type": "style_score", "target": "classic_contemporary", "value": 5 }]
+    },
+
+    {
+      "id": "priority_material_quality_boost_lux",
+      "when": { "all": [{ "field": "design_priority", "operator": "equals", "value": "material_quality" }] },
+      "effects": [
+        { "type": "style_score", "target": "contemporary_luxury", "value": 2 },
+        { "type": "content_tag", "target": "material_quality", "value": 1 }
+      ]
+    },
+    {
+      "id": "priority_visual_beauty_boost_warm",
+      "when": { "all": [{ "field": "design_priority", "operator": "equals", "value": "visual_beauty" }] },
+      "effects": [{ "type": "style_score", "target": "warm_natural", "value": 2 }]
+    },
+    {
+      "id": "priority_storage_boost_minimal",
+      "when": { "all": [{ "field": "design_priority", "operator": "equals", "value": "storage_function" }] },
+      "effects": [{ "type": "style_score", "target": "modern_minimal", "value": 2 }]
+    },
+    {
+      "id": "priority_unique_boost_classic",
+      "when": { "all": [{ "field": "design_priority", "operator": "equals", "value": "unique_design" }] },
+      "effects": [{ "type": "style_score", "target": "classic_contemporary", "value": 2 }]
+    },
+    {
+      "id": "priority_architecture_fit_boost_lux",
+      "when": { "all": [{ "field": "design_priority", "operator": "equals", "value": "architectural_fit" }] },
+      "effects": [{ "type": "style_score", "target": "contemporary_luxury", "value": 1 }]
+    },
+
+    {
+      "id": "timeline_ready_boost_warm",
+      "when": {
+        "all": [
+          { "field": "project_timeline", "operator": "in", "value": ["ready_now", "one_to_three"] }
+        ]
+      },
+      "effects": [{ "type": "style_score", "target": "warm_natural", "value": 1 }]
+    },
+
+    {
+      "id": "measure_ready_boost_minimal",
+      "when": {
+        "all": [
+          { "field": "measurement_status", "operator": "in", "value": ["dimensions_ready", "full_docs"] }
+        ]
+      },
+      "effects": [{ "type": "style_score", "target": "modern_minimal", "value": 1 }]
+    },
+
+    {
+      "id": "lead_ready_now",
+      "when": {
+        "all": [
+          { "field": "project_timeline", "operator": "equals", "value": "ready_now" }
+        ]
+      },
+      "effects": [{ "type": "lead_score", "value": 3 }]
+    },
+    {
+      "id": "lead_one_to_three",
+      "when": {
+        "all": [
+          { "field": "project_timeline", "operator": "equals", "value": "one_to_three" }
+        ]
+      },
+      "effects": [{ "type": "lead_score", "value": 2 }]
+    },
+    {
+      "id": "lead_stage_ready",
+      "when": {
+        "all": [
+          { "field": "project_stage", "operator": "in", "value": ["ready_for_order", "property_received"] }
+        ]
+      },
+      "effects": [{ "type": "lead_score", "value": 2 }]
+    },
+    {
+      "id": "lead_measure_ready",
+      "when": {
+        "all": [
+          { "field": "measurement_status", "operator": "in", "value": ["dimensions_ready", "full_docs"] }
+        ]
+      },
+      "effects": [{ "type": "lead_score", "value": 2 }]
+    },
+    {
+      "id": "lead_priority_consult_request",
+      "when": { "all": [{ "field": "consultation_requested", "operator": "equals", "value": true }] },
+      "effects": [{ "type": "lead_score", "value": 3 }]
+    }
+  ]
+}

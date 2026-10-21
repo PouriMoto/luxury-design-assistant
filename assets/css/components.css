@@ -1,0 +1,189 @@
+/* ============================================================
+   COMPONENTS — دکمه‌ها، بج‌ها، اسپینر، حالت‌های کلی
+   ============================================================ */
+
+/* ---------- BUTTONS ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  min-height: 48px;
+  border-radius: var(--r-md);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-medium);
+  transition: all var(--dur-fast) var(--ease);
+  border: 1.5px solid transparent;
+  white-space: nowrap;
+}
+
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn--primary {
+  background: var(--ink-primary);
+  color: var(--ink-inverse);
+  border-color: var(--ink-primary);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: #403524;
+  border-color: #403524;
+  transform: translateY(-1px);
+  box-shadow: var(--sh-sm);
+}
+
+.btn--accent {
+  background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+  color: var(--ink-inverse);
+  border: none;
+  box-shadow: var(--sh-sm);
+}
+
+.btn--accent:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--sh-md);
+}
+
+.btn--ghost,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: var(--r-sm);
+  color: var(--ink-secondary);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  background: transparent;
+  transition: all var(--dur-fast) var(--ease);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: var(--bg-surface);
+  color: var(--ink-primary);
+}
+
+.btn-ghost:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-back svg { color: currentColor; }
+
+.btn-block { width: 100%; }
+
+/* ---------- BADGE ---------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: var(--fw-medium);
+  border-radius: var(--r-pill);
+  background: var(--accent-soft);
+  color: var(--ink-primary);
+}
+
+.badge--success { background: rgba(122,150,112,0.15); color: var(--success); }
+.badge--danger  { background: rgba(192,112,96,0.15); color: var(--danger); }
+.badge--muted   { background: var(--bg-surface); color: var(--ink-muted); }
+
+/* ---------- SPINNER ---------- */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border-soft);
+  border-top-color: var(--accent-deep);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- CARD ---------- */
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-md);
+  padding: var(--sp-4);
+  box-shadow: var(--sh-xs);
+}
+
+/* ---------- DIVIDER ---------- */
+.divider {
+  height: 1px;
+  background: var(--border-soft);
+  margin: var(--sp-3) 0;
+  border: 0;
+}
+
+/* ---------- WELCOME / INTRO ---------- */
+.intro-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  padding: var(--sp-4);
+  text-align: center;
+}
+
+.intro-hero {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent));
+  color: var(--ink-primary);
+  box-shadow: var(--sh-md);
+}
+
+.intro-title {
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-bold);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.intro-sub {
+  font-size: var(--fs-md);
+  color: var(--ink-secondary);
+  margin: 0;
+  line-height: var(--lh-normal);
+}
+
+.intro-points {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  text-align: right;
+  padding: var(--sp-4);
+  background: var(--bg-surface);
+  border-radius: var(--r-md);
+  border: 1px solid var(--border-soft);
+}
+
+.intro-points li {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: flex-start;
+  font-size: var(--fs-sm);
+  color: var(--ink-secondary);
+  line-height: var(--lh-normal);
+}
+
+.intro-points li svg {
+  flex-shrink: 0;
+  color: var(--accent-deep);
+  margin-top: 2px;
+}
+
+.intro-cta {
+  margin-top: var(--sp-2);
+}

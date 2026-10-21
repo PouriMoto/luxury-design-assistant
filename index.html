@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#fdfaf3" />
+  <title>دستیار طراحی لوکس | انتخاب کابینت و دکور چوبی</title>
+
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/chat.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/result.css" />
+</head>
+<body>
+
+  <div id="app-shell" class="app-shell">
+
+    <header class="app-header">
+      <div class="header-inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none"
+                 stroke="currentColor" stroke-width="1.6"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18" />
+              <path d="M5 21V8l7-5 7 5v13" />
+              <path d="M9 21v-6h6v6" />
+            </svg>
+          </div>
+          <div class="brand-text">
+            <strong>دستیار طراحی</strong>
+            <span>انتخاب کابینت و دکور چوبی</span>
+          </div>
+        </div>
+        <button
+          id="btn-reset"
+          class="btn-ghost"
+          type="button"
+          aria-label="شروع مجدد"
+          title="شروع مجدد"
+        >
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none"
+               stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 1 0 3-6.7" />
+            <path d="M3 4v5h5" />
+          </svg>
+        </button>
+      </div>
+
+      <nav class="flow-map" aria-label="نقشه فرایند">
+        <ol id="flow-steps" class="flow-steps">
+          <li data-step="intro">معرفی</li>
+          <li data-step="quiz">آزمون</li>
+          <li data-step="result">نتیجه</li>
+          <li data-step="lead">تماس</li>
+          <li data-step="done">پایان</li>
+        </ol>
+      </nav>
+
+      <div id="progress-wrap" class="progress-wrap" hidden>
+        <div class="progress-bar">
+          <div id="progress-fill" class="progress-fill" style="width:0%"></div>
+        </div>
+        <span id="progress-label" class="progress-label">۰٪</span>
+      </div>
+    </header>
+
+    <main id="chat-scroll" class="chat-scroll" aria-live="polite" aria-atomic="false">
+      <div id="chat-stream" class="chat-stream"></div>
+    </main>
+
+    <footer id="composer" class="composer" hidden>
+      <div id="options-area" class="options-area"></div>
+      <div class="composer-actions">
+        <button id="btn-back" class="btn-ghost btn-back" type="button" hidden>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+          <span>سؤال قبلی</span>
+        </button>
+        <span id="composer-hint" class="composer-hint"></span>
+      </div>
+    </footer>
+
+    <div class="app-footer">
+      <span id="footer-status">دستیار طراحی لوکس</span>
+    </div>
+
+  </div>
+
+  <!-- SCRIPTS — order matters -->
+  <script src="assets/js/event-bus.js"></script>
+  <script src="assets/js/state.js"></script>
+  <script src="assets/js/api-client.js"></script>
+  <script src="assets/js/analytics.js"></script>
+  <script src="assets/js/rule-engine.js"></script>
+  <script src="assets/js/scoring-engine.js"></script>
+  <script src="assets/js/result-engine.js"></script>
+  <script src="assets/js/chat-renderer.js"></script>
+  <script src="assets/js/quiz-engine.js"></script>
+  <script src="assets/js/lead-form.js"></script>
+  <script src="assets/js/app.js"></script>
+
+</body>
+</html>

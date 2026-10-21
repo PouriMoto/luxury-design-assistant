@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "env": "dev",
+  "quiz_id": "luxury_design_quiz_v0",
+  "app_name": "دستیار طراحی لوکس",
+  "start_question_id": "project_type",
+  "image_paths": {
+    "styles": "assets/images/styles/",
+    "results": "assets/images/results/",
+    "fallback": "assets/images/fallback.jpg"
+  },
+  "typing": {
+    "min_ms": 1000,
+    "max_ms": 1800,
+    "user_bubble_delay_ms": 150,
+    "bot_bubble_appear_ms": 300
+  },
+  "flow_steps": ["intro", "quiz", "result", "lead", "done"]
+}

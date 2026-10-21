@@ -1,0 +1,190 @@
+/* ============================================================
+   TOKENS — پالت buttery luxury، فونت، فاصله‌گذاری، سایه‌ها
+   ============================================================ */
+
+/* ---------- FONT ---------- */
+@font-face {
+  font-family: "Vazir";
+  src: url("../fonts/Vazir.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- ROOT VARIABLES ---------- */
+:root {
+  /* Colors — buttery palette */
+  --bg-base:      #fdfaf3;
+  --bg-surface:   #faf4e6;
+  --bg-elevated:  #ffffff;
+
+  --ink-primary:   #2b2419;
+  --ink-secondary: #6b5e48;
+  --ink-muted:     #9a8d75;
+  --ink-inverse:   #fdfaf3;
+
+  --accent:        #c9a961;
+  --accent-soft:   #e8d9b5;
+  --accent-deep:   #a8874a;
+
+  --bubble-bot:    #f5eeda;
+  --bubble-user:   #2b2419;
+
+  --border-soft:   #e8dfc9;
+  --border-mid:    #d9cdb0;
+
+  --success:       #7a9670;
+  --danger:        #c07060;
+
+  /* Typography */
+  --font-family: "Vazir", system-ui, -apple-system, "Segoe UI",
+                 Tahoma, "Iranian Sans", sans-serif;
+
+  --fs-xs:  12px;
+  --fs-sm:  13px;
+  --fs-md:  15px;
+  --fs-lg:  17px;
+  --fs-xl:  20px;
+  --fs-2xl: 24px;
+
+  --lh-tight:  1.5;
+  --lh-normal: 1.75;
+
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-bold:    700;
+
+  /* Spacing */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+
+  /* Radii */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 26px;
+  --r-pill: 999px;
+
+  /* Shadows */
+  --sh-xs: 0 1px 2px rgba(43, 36, 25, 0.04);
+  --sh-sm: 0 2px 6px rgba(43, 36, 25, 0.06);
+  --sh-md: 0 6px 18px rgba(43, 36, 25, 0.08);
+  --sh-lg: 0 14px 32px rgba(43, 36, 25, 0.10);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 150ms;
+  --dur-med:  300ms;
+  --dur-slow: 500ms;
+
+  /* Layout */
+  --max-w: 720px;
+  --header-h: auto;
+}
+
+/* ---------- RESET ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--fs-md);
+  line-height: var(--lh-normal);
+  color: var(--ink-primary);
+  background: var(--bg-base);
+  min-height: 100vh;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  border: 0;
+  background: none;
+  color: inherit;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+input, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---------- FOCUS ---------- */
+:focus-visible {
+  outline: 2px solid var(--accent-deep);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+/* ---------- UTILITIES ---------- */
+[hidden] { display: none !important; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- SCROLLBAR ---------- */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-mid);
+  border-radius: var(--r-pill);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--ink-muted); }
+
+/* ---------- MOTION SAFETY ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
