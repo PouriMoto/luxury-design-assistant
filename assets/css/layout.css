@@ -1,5 +1,6 @@
 /* ============================================================
    LAYOUT — shell چت، هدر، flow-map، progress
+   v2: تقویت chat-scroll برای اسکرول عمودی پایدار
    ============================================================ */
 
 .app-shell {
@@ -17,6 +18,7 @@
   .app-shell {
     margin: var(--sp-6) auto;
     min-height: calc(100dvh - var(--sp-10));
+    max-height: calc(100dvh - var(--sp-10));
     border-radius: var(--r-lg);
     box-shadow: var(--sh-lg);
     overflow: hidden;
@@ -33,6 +35,7 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border-soft);
+  flex-shrink: 0;
 }
 
 .header-inner {
@@ -176,11 +179,15 @@
 
 /* ---------- CHAT SCROLL ---------- */
 .chat-scroll {
-  flex: 1;
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   padding: var(--sp-4);
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 .chat-stream {
@@ -200,6 +207,7 @@
   border-top: 1px solid var(--border-soft);
   padding: var(--sp-3) var(--sp-4) var(--sp-4);
   z-index: 10;
+  flex-shrink: 0;
 }
 
 .options-area {
@@ -232,6 +240,7 @@
   color: var(--ink-muted);
   background: var(--bg-base);
   border-top: 1px solid var(--border-soft);
+  flex-shrink: 0;
 }
 
 /* ---------- MOBILE ---------- */

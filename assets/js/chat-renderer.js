@@ -1,6 +1,6 @@
 /* ============================================================
    CHAT RENDERER — تنها ماژول DOM
-   v2: افزودن نمایش وضعیت API + موفقیت/خطای لید واقعی
+   v3: اسکرول هوشمند + اسکرول دستی پایدار
    ============================================================ */
 
 const ChatRenderer = (() => {
@@ -17,6 +17,9 @@ const ChatRenderer = (() => {
   let _scrollArea = null;
   let _footerStatus = null;
 
+  // تشخیص این‌که کاربر دستی اسکرول کرده یا نه
+  let _userScrolledUp = false;
+
   function delay(ms) {
     return new Promise((r) => setTimeout(r, ms));
   }
@@ -25,12 +28,45 @@ const ChatRenderer = (() => {
     return String(n).replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d]);
   }
 
-  function scrollToBottom() {
-    if (_scrollArea) {
-      requestAnimationFrame(() => {
-        _scrollArea.scrollTop = _scrollArea.scrollHeight;
+  function isNearBottom(threshold = 120) {
+    if (!_scrollArea) return true;
+    const distance =
+      _scrollArea.scrollHeight - _scrollArea.scrollTop - _scrollArea.clientHeight;
+    return distance <= threshold;
+  }
+
+  /**
+   * اسکرول به پایین
+   * - force = true: همیشه اسکرول کن (پیام جدید از طرف کاربر/دستیار)
+   * - force = false: فقط اگر کاربر در پایین بود اسکرول کن
+   */
+  function scrollToBottom(force = false) {
+    if (!_scrollArea) return;
+
+    if (!force && _userScrolledUp) return;
+
+    // دو لایه requestAnimationFrame برای اطمینان از محاسبه ارتفاع نهایی
+    requestAnimationFrame(() => {
+      if (!_scrollArea) return;
+      _scrollArea.scrollTo({
+        top: _scrollArea.scrollHeight,
+        behavior: "smooth",
       });
-    }
+
+      requestAnimationFrame(() => {
+        if (!_scrollArea) return;
+        // اگر هنوز کمی مانده (به خاطر انیمیشن تصویر/نمودار)، دوباره بچسبان
+        const distance =
+          _scrollArea.scrollHeight - _scrollArea.scrollTop - _scrollArea.clientHeight;
+        if (distance > 0) {
+          _scrollArea.scrollTop = _scrollArea.scrollHeight;
+        }
+      });
+    });
+  }
+
+  function updateUserScrolledState() {
+    _userScrolledUp = !isNearBottom();
   }
 
   // ---- INIT ----
@@ -63,6 +99,13 @@ const ChatRenderer = (() => {
       });
     }
 
+    // شنود اسکرول کاربر برای اسکرول هوشمند
+    if (_scrollArea) {
+      _scrollArea.addEventListener("scroll", () => {
+        updateUserScrolledState();
+      }, { passive: true });
+    }
+
     ChatRenderer._config = config;
     updateFooterStatus();
   }
@@ -75,7 +118,7 @@ const ChatRenderer = (() => {
     if (!online) {
       text += " · آفلاین";
     } else if (!apiOk) {
-      text += " · حالت پیش‌نمایش (ارسال واقعی تنظیم نشده)";
+      text += " · حالت پیش‌نمایش";
     } else {
       text += " · متصل";
     }
@@ -100,7 +143,10 @@ const ChatRenderer = (() => {
     }
     el.appendChild(bubble);
     _container.appendChild(el);
-    scrollToBottom();
+
+    // پیام جدید از کاربر یا دستیار → همیشه اسکرول کن
+    _userScrolledUp = false;
+    scrollToBottom(true);
     return el;
   }
 
@@ -116,7 +162,8 @@ const ChatRenderer = (() => {
       </div>
     `;
     _container.appendChild(el);
-    scrollToBottom();
+    _userScrolledUp = false;
+    scrollToBottom(true);
 
     const cfg = ChatRenderer._config?.typing || {};
     const min = cfg.min_ms || 1000;
@@ -130,7 +177,7 @@ const ChatRenderer = (() => {
     bubble.className = "bubble bubble--bot";
     bubble.innerHTML = finalText;
     el.appendChild(bubble);
-    scrollToBottom();
+    scrollToBottom(true);
     return el;
   }
 
@@ -152,7 +199,8 @@ const ChatRenderer = (() => {
     `;
     el.appendChild(bubble);
     _container.appendChild(el);
-    scrollToBottom();
+    _userScrolledUp = false;
+    scrollToBottom(true);
 
     const isImageVariant = question.variant === "image_cards";
     if (isImageVariant) {
@@ -337,7 +385,8 @@ const ChatRenderer = (() => {
     }
     el.appendChild(box);
     _container.appendChild(el);
-    scrollToBottom();
+    _userScrolledUp = false;
+    scrollToBottom(true);
   }
 
   // ---- LEAD FORM ----
@@ -390,7 +439,7 @@ const ChatRenderer = (() => {
     }
 
     _optionsArea.appendChild(form);
-    scrollToBottom();
+    scrollToBottom(true);
   }
 
   function setFieldError(form, fieldName, message) {
@@ -400,9 +449,6 @@ const ChatRenderer = (() => {
     if (errorEl) errorEl.textContent = message || "";
   }
 
-  /**
-   * نمایش حالت در حال ارسال داخل فرم
-   */
   function setFormLoading(form, loading) {
     const submitBtn = form.querySelector('[data-action="submit"]');
     const skipBtn = form.querySelector('[data-action="skip"]');
@@ -417,9 +463,6 @@ const ChatRenderer = (() => {
     inputs.forEach((i) => (i.disabled = loading));
   }
 
-  /**
-   * نمایش خطای API در فرم
-   */
   function setFormApiError(form, message) {
     let box = form.querySelector(".form-api-error");
     if (!box) {
@@ -447,9 +490,6 @@ const ChatRenderer = (() => {
     if (box) box.remove();
   }
 
-  /**
-   * کارت موفقیت لید (پس از ثبت واقعی)
-   */
   function renderLeadSuccess(container, data, { leadId, simulated }) {
     const el = document.createElement("div");
     el.className = "card";
@@ -469,12 +509,12 @@ const ChatRenderer = (() => {
       </p>
       <p style="margin:8px 0 0;font-size:var(--fs-xs);color:var(--ink-muted)">
         ${simulated
-          ? "پس از راه‌اندازی Apps Script در مرحله بعد، این درخواست به Google Sheets ارسال و به کارشناس اطلاع داده می‌شود."
+          ? "پس از راه‌اندازی، این درخواست به Google Sheets ارسال و به کارشناس اطلاع داده می‌شود."
           : "درخواست شما ثبت شد. کارشناس مجموعه به‌زودی برای پیگیری با شما تماس می‌گیرد."}
       </p>
     `;
     container.replaceWith(el);
-    scrollToBottom();
+    scrollToBottom(true);
   }
 
   // ---- RESULT ----
@@ -605,7 +645,8 @@ const ChatRenderer = (() => {
     wrap.appendChild(buildDebugPanel(meta));
 
     _container.appendChild(wrap);
-    scrollToBottom();
+    _userScrolledUp = false;
+    scrollToBottom(true);
   }
 
   // ---- DEBUG PANEL ----
@@ -644,7 +685,6 @@ ${path.join(" → ")}
       </div>
     `;
 
-    // به‌روزرسانی تعداد رویدادها به‌صورت async
     (async () => {
       try {
         const count = await Analytics.getCount();
